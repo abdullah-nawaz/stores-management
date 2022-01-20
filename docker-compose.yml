@@ -1,0 +1,34 @@
+# external network is commented but can be activated to have other microservices connected to this current service
+
+version: '3.3'
+
+services:
+  stores_management-mysqldb:
+    container_name: stores_management-mysqldb
+    image: mysql:5.7.8
+    environment:
+      MYSQL_DATABASE: storesmanagementdb
+      MYSQL_USER: webuser
+      MYSQL_PASSWORD: admin123
+      MYSQL_ROOT_PASSWORD: admin123
+    networks:
+      - default
+    volumes:
+      - storesmanagementdbvolume:/var/lib/mysql
+    expose:
+      - 3306
+
+  stores_management-web:
+    restart: always
+    build: .
+    container_name: stores_management-web
+    entrypoint: /stores-management/bin/run_stores_management_web.sh
+    ports:
+      - "8081:8081"
+    volumes:
+      - .:/stores-management
+    networks:
+      - default
+
+volumes:
+  storesmanagementdbvolume:
