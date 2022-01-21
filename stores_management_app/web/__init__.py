@@ -34,15 +34,23 @@ def create_app(environment):
 
     from stores_management_app.web.auth import auth_bp
     from stores_management_app.web.users import stores_management_user
+    from stores_management_app.web.shops import stores_management_shop
+    from stores_management_app.web.products import stores_management_product
 
     app.register_blueprint(base_bp, url_prefix="/v1/store-management")
     app.register_blueprint(auth_bp, url_prefix="/v1/store-management")
     app.register_blueprint(stores_management_user, url_prefix="/v1/store-management")
+    app.register_blueprint(stores_management_shop, url_prefix="/v1/store-management")
+    app.register_blueprint(stores_management_product, url_prefix="/v1/store-management")
 
     from stores_management_app.web.users import user_ns
     from stores_management_app.web.auth import auth_namespace
+    from stores_management_app.web.shops import shop_ns
+    from stores_management_app.web.products import product_ns
 
     base_api.add_namespace(user_ns)
     base_api.add_namespace(auth_namespace)
+    base_api.add_namespace(shop_ns)
+    base_api.add_namespace(product_ns)
 
     return app

@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 
 import jwt
 from sqlalchemy import Boolean, Column, DateTime, String
+from sqlalchemy.orm import relationship
 
 from stores_management_app import db
 
@@ -20,6 +21,8 @@ class User(db.Model):
     password = Column(String(255), nullable=False)
     registered_on = Column(DateTime, nullable=False)
     admin = Column(Boolean, nullable=False, default=False)
+
+    shops = relationship('Shop', backref='user', cascade="all, delete-orphan", lazy="dynamic")
 
     def __init__(self, email, password, admin=False):
         self.id = str(uuid.uuid4().hex)

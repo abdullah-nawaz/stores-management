@@ -6,9 +6,10 @@ from stores_management_app.web.common.utils import err_resp, internal_err_resp, 
 
 class UserService:
     @staticmethod
-    def get_user_data(email):
+    def get_user_data(user_id, email):
         """ Get user data by username """
-        user = User.query.filter_by(email=email).first()
+        print(user_id)
+        user = User.query.filter_by(id=user_id, email=email).first()
         if not user:
             return err_resp("User not found!", "user_404", 404)
 

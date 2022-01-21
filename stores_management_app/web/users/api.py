@@ -1,4 +1,3 @@
-from flask_jwt_extended import jwt_required
 from flask_restx import Resource
 
 from . import user_ns
@@ -20,7 +19,6 @@ class UserGet(Resource):
             404: "User not found!",
         },
     )
-    @jwt_required()
-    def get(self, email):
+    def get(self, user_id, email):
         """ Get a specific user's data by their username """
-        return UserService.get_user_data(email)
+        return UserService.get_user_data(user_id, email)

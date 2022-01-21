@@ -39,10 +39,10 @@ def token_required(f):
             if "Bearer " not in request.headers["Authorization"]:
                 return {'message': 'Token is missing.'}, 401
             token = request.headers['Authorization']
-            print(token.split("Bearer")[1].strip())
             try:
                 key = current_app.config.get("SECRET_KEY")
-                jwt.decode(token.split("Bearer")[1].strip(), key, algorithms="HS256")
+                payload = jwt.decode(token.split("Bearer")[1].strip(), key, algorithms="HS256")
+                args = [*args, payload["user_id"]]
                 is_blacklisted_token = BlacklistToken.check_blacklist(token.split("Bearer")[1].strip())
                 if is_blacklisted_token:
                     return 'Token blacklisted. Please log in again.', 401

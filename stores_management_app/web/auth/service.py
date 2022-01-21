@@ -49,7 +49,6 @@ class AuthService:
 
     @staticmethod
     def register(data):
-        print("HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
         # Assign vars
 
         ## Required values
