@@ -1,10 +1,8 @@
-# external network is commented but can be activated to have other microservices connected to this current service
-
 version: '3.3'
 
 services:
-  stores_management-mysqldb:
-    container_name: stores_management-mysqldb
+  storesmanagementdb:
+    container_name: storesmanagementdb
     image: mysql:5.7.8
     environment:
       MYSQL_DATABASE: storesmanagementdb

@@ -1,5 +1,6 @@
 import logging
 import os
+from datetime import timedelta
 
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -75,6 +76,12 @@ class FlaskConfig(CompressionConfig):
 
     SECRET_KEY = os.environ.get("SECRET_KEY", "my_precious_stores_management")
     PRESERVE_CONTEXT_ON_EXCEPTION = False
+
+    PROPAGATE_EXCEPTIONS = True
+    # JWT Extended config
+    JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "my_precious_stores_management")
+    ## Set the token to expire every week
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=7)
 
     # File upload setting
     MAX_CONTENT_LENGTH = 2048 * 2048
