@@ -33,7 +33,7 @@ class Shop(db.Model):
             self.ID_KEY: self.id,
             self.NAME_KEY: self.name,
             self.ADDRESS_KEY: self.address,
-            self.PRODUCTS_KEY: [product.to_json for product in self.products.all()]
+            self.PRODUCTS_KEY: [product.to_json() for product in self.products.all()]
         }
 
 
