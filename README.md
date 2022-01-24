@@ -1,5 +1,5 @@
 # stores-management
-## Application foe stores/shops management
+## Application for stores/shops management
 ### Documentation url:
 - http://localhost:8081/v1/store-management/
 
